@@ -50,6 +50,7 @@ const Login = () => {
                 id="username"
                 value={login.username}
                 onChange={handleInput}
+                required
             />
             <label htmlFor="password">Password: </label>
             <input
@@ -58,6 +59,7 @@ const Login = () => {
                 id="password"
                 value={login.password}
                 onChange={handleInput}
+                required
             />
             <Button text="Login" callback={handleSubmit} />
         </Wrapper>
