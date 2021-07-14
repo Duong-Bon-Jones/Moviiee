@@ -84,6 +84,19 @@ export default {
         return reqToken.request_token;
     },
 
+    rateMovie: async (sessionId: string, movieId: number, value: number) => {
+        const endpoint = `${API_URL}movie/${movieId}/rating?api_key=${API_KEY}&session_id=${sessionId}`;
+
+        const rating = await (
+            await fetch(endpoint, {
+                ...defaultConfig,
+                body: JSON.stringify({ value }),
+            })
+        ).json();
+
+        return rating;
+    },
+
     authenticate: async (
         requestToken: string,
         username: string,

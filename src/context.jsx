@@ -1,6 +1,11 @@
 import React, { createContext, useState } from "react";
 
-export const Context = createContext<>(null);
+export const Context = createContext([]);
+
+// interface ContextProps {
+//     state: [];
+//     setState: () => void;
+// }
 
 const UserProvider = ({ children }) => {
     const [state, setState] = useState(undefined);
@@ -11,3 +16,5 @@ const UserProvider = ({ children }) => {
         </Context.Provider>
     );
 };
+
+export default UserProvider;

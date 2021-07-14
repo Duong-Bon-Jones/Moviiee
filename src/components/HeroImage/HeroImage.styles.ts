@@ -13,12 +13,11 @@ export const Wrapper = styled.div<Props>`
       100%
     ),
     url('${image}'), var(--darkGrey)`};
-    background-size: 100%, contain;
+    background-size: 100%, cover;
     background-position: center;
-    height: 75vh;
+    height: 600px;
     position: relative;
-    animation: animateHeroimage 1s;
-    background-repeat: no-repeat;
+    animation: animateHeroImage 1s;
 
     @keyframes animateHeroimage {
         from {

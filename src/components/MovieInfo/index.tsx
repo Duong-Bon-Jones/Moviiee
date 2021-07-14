@@ -1,16 +1,30 @@
-/* eslint-disable react/prop-types */
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Wrapper, Content, Text } from "./MovieInfo.styles";
 import Thumb from "../Thumb";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import NoImage from "../../images/no_image.jpg";
 import { MovieState } from "../../hooks/useMovieFetch";
+import Rate from "../Rate";
+import { Context } from "../../context";
+import API from "../../API";
 
 interface Props {
     movie: MovieState;
 }
 
 const MovieInfo: React.FC<Props> = ({ movie }) => {
+    const [user] = useContext(Context);
+    const [hasRated, setHasRated] = useState(false);
+
+    const handleRating = async (value: number) => {
+        try {
+            await API.rateMovie(user["sessionId"], movie.id, value);
+            setHasRated(true);
+        } catch (ex) {
+            console.log(ex);
+        }
+    };
+
     return (
         <Wrapper backdrop={movie.backdrop_path}>
             <Content>
@@ -55,6 +69,14 @@ const MovieInfo: React.FC<Props> = ({ movie }) => {
                     </div>
 
                     <p>Release date: {movie.release_date} </p>
+
+                    {user && (
+                        <div>
+                            <p>Rate Movie</p>
+                            <Rate callback={handleRating} />
+                            {hasRated && <p>Thanks for rating!</p>}
+                        </div>
+                    )}
                 </Text>
             </Content>
         </Wrapper>

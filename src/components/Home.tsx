@@ -17,6 +17,7 @@ import Thumb from "./Thumb";
 import Spinner from "./Spinner";
 import SearchBar from "./SearchBar";
 import Button from "./Button";
+import Login from "./Login";
 
 const Home: React.FC = () => {
     const {
